@@ -1,0 +1,16 @@
+CENTRAL DE JOGOS — EDIÇÃO RETRÔ
+
+Arquivos:
+- index.html: estrutura da página
+- style.css: visual inspirado no Windows 98 e responsividade
+- script.js: submenu, data do rodapé e janela Sobre
+
+COMO PUBLICAR NO GITHUB PAGES
+1. Extraia os arquivos do ZIP.
+2. Crie um repositório (ou use um repositório existente) para a central.
+3. Envie index.html, style.css e script.js para a raiz do repositório.
+4. No GitHub, abra Settings > Pages.
+5. Em Build and deployment, escolha Deploy from a branch, selecione a branch principal e a pasta / (root).
+6. Salve e aguarde a publicação.
+
+Os jogos abrem em outra aba/janela do navegador. O navegador pode abrir uma nova aba em vez de uma janela, conforme as configurações dele.

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#008080">
+  <meta name="description" content="Central de Jogos — uma coleção de jogos retrô em um só lugar.">
+  <title>Central de Jogos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="desktop">
+    <section class="window" aria-label="Central de Jogos">
+      <header class="titlebar">
+        <div class="titlebar-name"><span class="app-icon" aria-hidden="true">▣</span> Central de Jogos</div>
+        <div class="window-controls" aria-hidden="true"><span>_</span><span>□</span><span>×</span></div>
+      </header>
+
+      <div class="banner">
+        <div class="banner-mark" aria-hidden="true">▣</div>
+        <div class="banner-copy">
+          <h1>Central de Jogos</h1>
+          <p>Seu cantinho de diversão • Edição Retrô</p>
+        </div>
+        <div class="banner-decoration" aria-hidden="true">★ ▦ ◈</div>
+      </div>
+
+      <nav class="menubar" aria-label="Menu principal">
+        <div class="menu-root">
+          <button class="menu-button" id="gamesMenuButton" aria-haspopup="true" aria-expanded="false">Jogos <span class="menu-arrow">▾</span></button>
+          <div class="submenu" id="gamesSubmenu" role="menu">
+            <a role="menuitem" href="https://lcampaci.github.io/hangman/" target="_blank" rel="noopener">♙ <span>Jogo da Forca</span></a>
+            <a role="menuitem" href="https://lcampaci.github.io/sudoku/" target="_blank" rel="noopener">▦ <span>Sudoku</span></a>
+            <a role="menuitem" href="https://lcampaci.github.io/bangbang/" target="_blank" rel="noopener">✹ <span>Bang! Bang!</span></a>
+            <a role="menuitem" href="https://lcampaci.github.io/memoryblocks/" target="_blank" rel="noopener">▧ <span>Memory Blocks</span></a>
+            <a role="menuitem" href="https://lcampaci.github.io/Tetris/" target="_blank" rel="noopener">▦ <span>Tetris 3.1</span></a>
+            <a role="menuitem" href="https://lcampaci.github.io/boxworld/" target="_blank" rel="noopener">▣ <span>BoxWorld</span></a>
+            <a role="menuitem" href="https://lcampaci.github.io/campominado/" target="_blank" rel="noopener">💣 <span>Campo Minado</span></a>
+          </div>
+        </div>
+        <button class="menu-button about-button" id="aboutButton">Sobre</button>
+        <div class="menu-spacer"></div>
+        <span class="menu-hint">Selecione Jogos para começar</span>
+      </nav>
+
+      <section class="content">
+        <div class="welcome-panel">
+          <div class="welcome-icon" aria-hidden="true">🎮</div>
+          <div>
+            <h2>Bem-vindo à Central de Jogos!</h2>
+            <p>Escolha um jogo no menu <strong>Jogos</strong>. Cada jogo será aberto em uma nova janela ou aba do navegador.</p>
+          </div>
+        </div>
+
+        <h2 class="section-heading"><span>▤</span> Jogos disponíveis</h2>
+        <div class="game-grid">
+          <a class="game-card" href="https://lcampaci.github.io/hangman/" target="_blank" rel="noopener"><span class="game-symbol">♙</span><span class="game-name">Jogo da Forca</span><span class="game-desc">Descubra a palavra</span></a>
+          <a class="game-card" href="https://lcampaci.github.io/sudoku/" target="_blank" rel="noopener"><span class="game-symbol">▦</span><span class="game-name">Sudoku</span><span class="game-desc">Desafio de lógica</span></a>
+          <a class="game-card" href="https://lcampaci.github.io/bangbang/" target="_blank" rel="noopener"><span class="game-symbol">✹</span><span class="game-name">Bang! Bang!</span><span class="game-desc">Ação e reflexos</span></a>
+          <a class="game-card" href="https://lcampaci.github.io/memoryblocks/" target="_blank" rel="noopener"><span class="game-symbol">▧</span><span class="game-name">Memory Blocks</span><span class="game-desc">Treine sua memória</span></a>
+          <a class="game-card" href="https://lcampaci.github.io/Tetris/" target="_blank" rel="noopener"><span class="game-symbol tetris-symbol">▦</span><span class="game-name">Tetris 3.1</span><span class="game-desc">Encaixe as peças</span></a>
+          <a class="game-card" href="https://lcampaci.github.io/boxworld/" target="_blank" rel="noopener"><span class="game-symbol">▣</span><span class="game-name">BoxWorld</span><span class="game-desc">Organize as caixas</span></a>
+          <a class="game-card" href="https://lcampaci.github.io/campominado/" target="_blank" rel="noopener"><span class="game-symbol">💣</span><span class="game-name">Campo Minado</span><span class="game-desc">Encontre as minas</span></a>
+        </div>
+        <p class="tip"><span aria-hidden="true">ℹ</span> Dica: você também pode acessar qualquer jogo pelo submenu <strong>Jogos</strong>, na parte superior.</p>
+      </section>
+
+      <footer class="statusbar">
+        <span class="status-left"><span class="status-led"></span> Pronto</span>
+        <span class="status-date" id="currentDate">--/--/----</span>
+      </footer>
+    </section>
+    <p class="desktop-caption">Central de Jogos • lcampaci.github.io</p>
+  </main>
+
+  <dialog id="aboutDialog" class="about-dialog">
+    <div class="dialog-titlebar"><strong>Sobre a Central de Jogos</strong><button id="closeAbout" aria-label="Fechar">×</button></div>
+    <div class="dialog-body">
+      <div class="about-logo">▣</div>
+      <div><h2>Central de Jogos</h2><p>Uma coleção de jogos desenvolvidos para navegador, reunidos em uma interface inspirada no Windows 98.</p><p class="about-version">Edição Retrô • 2026</p></div>
+    </div>
+    <div class="dialog-actions"><button id="okAbout">OK</button></div>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>
