@@ -1,38 +1,76 @@
-const menuRoot = document.querySelector(".menu-root");
-const menuButton = document.getElementById("gamesMenuButton");
-const submenu = document.getElementById("gamesSubmenu");
+(() => {
+  'use strict';
 
-function setMenu(open) {
-  menuRoot.classList.toggle("open", open);
-  menuButton.setAttribute("aria-expanded", String(open));
-}
-menuButton.addEventListener("click", (event) => {
-  event.stopPropagation();
-  setMenu(!menuRoot.classList.contains("open"));
-});
-document.addEventListener("click", (event) => {
-  if (!menuRoot.contains(event.target)) setMenu(false);
-});
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    setMenu(false);
-    menuButton.focus();
+  // Data atual no rodapé, usando o calendário local do navegador.
+  const dateElement = document.getElementById('currentDate');
+  const updateDate = () => {
+    if (!dateElement) return;
+    dateElement.textContent = new Intl.DateTimeFormat('pt-BR', {
+      day: '2-digit', month: '2-digit', year: 'numeric'
+    }).format(new Date());
+  };
+  updateDate();
+  // Atualiza ao virar o dia, inclusive se a página permanecer aberta.
+  window.setInterval(updateDate, 60 * 1000);
+
+  // Menu Jogos.
+  const menuRoot = document.querySelector('.menu-root');
+  const menuButton = document.getElementById('gamesMenuButton');
+  const submenu = document.getElementById('gamesSubmenu');
+  const setMenuOpen = (open) => {
+    if (!menuRoot || !menuButton) return;
+    menuRoot.classList.toggle('open', open);
+    menuButton.setAttribute('aria-expanded', String(open));
+  };
+
+  if (menuButton) {
+    menuButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      setMenuOpen(!menuRoot.classList.contains('open'));
+    });
   }
-});
-submenu.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => setMenu(false));
-});
+  if (submenu) {
+    submenu.addEventListener('click', (event) => {
+      if (event.target.closest('a')) setMenuOpen(false);
+    });
+  }
+  document.addEventListener('click', (event) => {
+    if (menuRoot && !menuRoot.contains(event.target)) setMenuOpen(false);
+  });
 
-const dateElement = document.getElementById("currentDate");
-function updateDate() {
-  const now = new Date();
-  dateElement.textContent = new Intl.DateTimeFormat("pt-BR", {
-    weekday: "short", day: "2-digit", month: "2-digit", year: "numeric"
-  }).format(now);
-}
-updateDate();
+  // Janela Sobre.
+  const aboutButton = document.getElementById('aboutButton');
+  const aboutDialog = document.getElementById('aboutDialog');
+  const closeAbout = document.getElementById('closeAbout');
+  const okAbout = document.getElementById('okAbout');
 
-const aboutDialog = document.getElementById("aboutDialog");
-document.getElementById("aboutButton").addEventListener("click", () => aboutDialog.showModal());
-document.getElementById("closeAbout").addEventListener("click", () => aboutDialog.close());
-document.getElementById("okAbout").addEventListener("click", () => aboutDialog.close());
+  const openAbout = () => {
+    if (!aboutDialog) return;
+    if (typeof aboutDialog.showModal === 'function') {
+      if (!aboutDialog.open) aboutDialog.showModal();
+    } else {
+      aboutDialog.setAttribute('open', '');
+    }
+  };
+  const closeAboutDialog = () => {
+    if (!aboutDialog) return;
+    if (typeof aboutDialog.close === 'function' && aboutDialog.open) {
+      aboutDialog.close();
+    } else {
+      aboutDialog.removeAttribute('open');
+    }
+  };
+
+  if (aboutButton) aboutButton.addEventListener('click', openAbout);
+  if (closeAbout) closeAbout.addEventListener('click', closeAboutDialog);
+  if (okAbout) okAbout.addEventListener('click', closeAboutDialog);
+  if (aboutDialog) {
+    aboutDialog.addEventListener('click', (event) => {
+      if (event.target === aboutDialog) closeAboutDialog();
+    });
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setMenuOpen(false);
+  });
+})();
